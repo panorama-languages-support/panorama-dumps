@@ -1075,6 +1075,470 @@
 | bool ChaosBackbufferImagePanel.UpdateFocusInContext()
 | 
 |}
+== ChaosLoadingScreen ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool ChaosLoadingScreen.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool ChaosLoadingScreen.AcceptsInput()
+| 
+|-
+| AddClass
+| void ChaosLoadingScreen.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void ChaosLoadingScreen.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool ChaosLoadingScreen.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool ChaosLoadingScreen.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown ChaosLoadingScreen.Children()
+| 
+|-
+| ClearPanelEvent
+| void ChaosLoadingScreen.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void ChaosLoadingScreen.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool ChaosLoadingScreen.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown ChaosLoadingScreen.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void ChaosLoadingScreen.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void ChaosLoadingScreen.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void ChaosLoadingScreen.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown ChaosLoadingScreen.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown ChaosLoadingScreen.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown ChaosLoadingScreen.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown ChaosLoadingScreen.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 ChaosLoadingScreen.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring ChaosLoadingScreen.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 ChaosLoadingScreen.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown ChaosLoadingScreen.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 ChaosLoadingScreen.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 ChaosLoadingScreen.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown ChaosLoadingScreen.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown ChaosLoadingScreen.GetLastChild()
+| 
+|-
+| GetParent
+| unknown ChaosLoadingScreen.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown ChaosLoadingScreen.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool ChaosLoadingScreen.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool ChaosLoadingScreen.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool ChaosLoadingScreen.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool ChaosLoadingScreen.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool ChaosLoadingScreen.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool ChaosLoadingScreen.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool ChaosLoadingScreen.IsSelected()
+| 
+|-
+| IsTransparent
+| bool ChaosLoadingScreen.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool ChaosLoadingScreen.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void ChaosLoadingScreen.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void ChaosLoadingScreen.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void ChaosLoadingScreen.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool ChaosLoadingScreen.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void ChaosLoadingScreen.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void ChaosLoadingScreen.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void ChaosLoadingScreen.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void ChaosLoadingScreen.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void ChaosLoadingScreen.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool ChaosLoadingScreen.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void ChaosLoadingScreen.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void ChaosLoadingScreen.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void ChaosLoadingScreen.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void ChaosLoadingScreen.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void ChaosLoadingScreen.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void ChaosLoadingScreen.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void ChaosLoadingScreen.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void ChaosLoadingScreen.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void ChaosLoadingScreen.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void ChaosLoadingScreen.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void ChaosLoadingScreen.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void ChaosLoadingScreen.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void ChaosLoadingScreen.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void ChaosLoadingScreen.SetDialogVariableTime( cstring , int64  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void ChaosLoadingScreen.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void ChaosLoadingScreen.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool ChaosLoadingScreen.SetFocus()
+| 
+|-
+| SetHasClass
+| void ChaosLoadingScreen.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void ChaosLoadingScreen.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void ChaosLoadingScreen.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void ChaosLoadingScreen.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void ChaosLoadingScreen.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void ChaosLoadingScreen.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void ChaosLoadingScreen.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void ChaosLoadingScreen.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void ChaosLoadingScreen.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void ChaosLoadingScreen.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void ChaosLoadingScreen.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void ChaosLoadingScreen.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void ChaosLoadingScreen.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool ChaosLoadingScreen.UpdateFocusInContext()
+| 
+|}
 == ChaosMainMenu ==
 {| class="standard-table" style="width: 100%;"
 ! Property Name
@@ -4021,6 +4485,485 @@
 |-
 | UpdateFocusInContext
 | bool Panel.UpdateFocusInContext()
+| 
+|}
+== ProgressBar ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| max
+| float
+|  
+| 
+|-
+| min
+| float
+|  
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| value
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool ProgressBar.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool ProgressBar.AcceptsInput()
+| 
+|-
+| AddClass
+| void ProgressBar.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void ProgressBar.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool ProgressBar.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool ProgressBar.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown ProgressBar.Children()
+| 
+|-
+| ClearPanelEvent
+| void ProgressBar.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void ProgressBar.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool ProgressBar.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown ProgressBar.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void ProgressBar.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void ProgressBar.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void ProgressBar.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown ProgressBar.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown ProgressBar.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown ProgressBar.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown ProgressBar.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 ProgressBar.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring ProgressBar.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 ProgressBar.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown ProgressBar.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 ProgressBar.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 ProgressBar.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown ProgressBar.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown ProgressBar.GetLastChild()
+| 
+|-
+| GetParent
+| unknown ProgressBar.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown ProgressBar.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool ProgressBar.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool ProgressBar.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool ProgressBar.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool ProgressBar.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool ProgressBar.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool ProgressBar.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool ProgressBar.IsSelected()
+| 
+|-
+| IsTransparent
+| bool ProgressBar.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool ProgressBar.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void ProgressBar.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void ProgressBar.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void ProgressBar.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool ProgressBar.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void ProgressBar.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void ProgressBar.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void ProgressBar.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void ProgressBar.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void ProgressBar.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool ProgressBar.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void ProgressBar.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void ProgressBar.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void ProgressBar.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void ProgressBar.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void ProgressBar.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void ProgressBar.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void ProgressBar.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void ProgressBar.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void ProgressBar.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void ProgressBar.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void ProgressBar.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void ProgressBar.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void ProgressBar.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void ProgressBar.SetDialogVariableTime( cstring , int64  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void ProgressBar.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void ProgressBar.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool ProgressBar.SetFocus()
+| 
+|-
+| SetHasClass
+| void ProgressBar.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void ProgressBar.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void ProgressBar.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void ProgressBar.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void ProgressBar.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void ProgressBar.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void ProgressBar.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void ProgressBar.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void ProgressBar.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void ProgressBar.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void ProgressBar.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void ProgressBar.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void ProgressBar.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool ProgressBar.UpdateFocusInContext()
 | 
 |}
 == ResizeDragKnob ==
