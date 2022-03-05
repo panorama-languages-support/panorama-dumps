@@ -1,0 +1,389 @@
+{| class="wikitable"
+! Event
+! Panel Event
+! Description
+|-
+| <code>AddItemToCart(js_raw_arg itemID)</code>
+| No
+| Add an itemid to tournament store shopping cart
+|-
+| <code>AddStyle(string class)</code>
+| Yes
+| Add a CSS class to a panel.
+|-
+| <code>AddStyleToEachChild(string class)</code>
+| Yes
+| Add a CSS class to all children of this panel.
+|-
+| <code>AsyncEvent(float delay, event eventToFire)</code>
+| No
+| Fire another event after a delay (in seconds).
+|-
+| <code>CapabilityPopupIsOpen(js_raw_arg bActive)</code>
+| No
+| User is using the name tag or opening a case, or stickering.  Using one of the capabilites
+|-
+| <code>ChaosHudProcessInput()</code>
+| No
+| Fired when visible every tick or every other tick if the panel allows it.
+|-
+| <code>ChaosHudThink()</code>
+| No
+| Fired every tick or every other tick if the panel allows it.
+|-
+| <code>CloseAcceptPopup()</code>
+| No
+| Fired when accept match popup Closes.
+|-
+| <code>CloseSubMenuContent(js_raw_arg no args)</code>
+| No
+| Closes up the submenu panel
+|-
+| <code>DbgTestHudVote(string string: test type)</code>
+| No
+| Internal testing event.
+|-
+| <code>DemoPlaybackControl(string string, float float)</code>
+| No
+| Control demo playback
+|-
+| <code>DropInputFocus()</code>
+| Yes
+| Drop focus entirely from the window containing this panel.
+|-
+| <code>EndOfMatch_GetFreeForAllPlayerPosition_Response(js_raw_arg position)</code>
+| No
+| Callback for Scoreboard_GetFreeForAllPlayerPosition
+|-
+| <code>EndOfMatch_GetFreeForAllTopThreePlayers_Response(js_raw_arg first, js_raw_arg second, js_raw_arg third)</code>
+| No
+| Callback for Scoreboard_GetFreeForAllTopThreePlayers
+|-
+| <code>EndOfMatch_ShowNext()</code>
+| No
+| Notify the EndOfMatch controller to proceed to the next panel.
+|-
+| <code>FriendInvitedFromContextMenu(js_raw_arg xuid)</code>
+| No
+| invite friend from the playercard. Make the invite anim snow immediately instead of waiting for the callback that can take a long time.
+|-
+| <code>HideContentPanel(js_raw_arg no args)</code>
+| No
+| Hide all the content panels and show the default home dashboard
+|-
+| <code>HideSelectItemForCapabilityPopup()</code>
+| No
+| Hide this popup in inventory
+|-
+| <code>IfHasClassEvent(string class, event eventToFire)</code>
+| Yes
+| Fire another event if this panel has a given class.
+|-
+| <code>IfHoverOtherEvent(string otherPanelID, event eventToFire)</code>
+| Yes
+| Fire another event if currently hovering over a panel with the given ID.
+|-
+| <code>IfNotHasClassEvent(string class, event eventToFire)</code>
+| Yes
+| Fire another event if this panel does not have a given class.
+|-
+| <code>IfNotHoverOtherEvent(string otherPanelID, event eventToFire)</code>
+| Yes
+| Fire another event if not currently hovering over a panel with the given ID.
+|-
+| <code>InitAvatar(js_raw_arg xuid, js_raw_arg type of panel)</code>
+| No
+| Update the avatar panel data for a xuid
+|-
+| <code>InitializeTournamentsPage(js_raw_arg tournament ID)</code>
+| No
+| Loads the layout for a given tournament for active tournament tab
+|-
+| <code>InventoryItemPreview(js_raw_arg itemId)</code>
+| No
+| Just itemid
+|-
+| <code>LayoutReloaded()</code>
+| No
+| Called when a panel has its layout reloaded.
+|-
+| <code>LootlistItemPreview(js_raw_arg itemId)</code>
+| No
+| typeParams
+|-
+| <code>MainMenuTabShown(js_raw_arg tabid)</code>
+| No
+| Alert main menu tabs when they are shown, in case there is a data update needed
+|-
+| <code>MovePanelDown(int32 repeatCount)</code>
+| Yes
+| Move down from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelLeft(int32 repeatCount)</code>
+| Yes
+| Move left from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelRight(int32 repeatCount)</code>
+| Yes
+| Move right from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelUp(int32 repeatCount)</code>
+| Yes
+| Move up from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>NavigateToTab(js_raw_arg tab name, js_raw_arg xml name, js_raw_arg If its a tab, js_raw_arg if you should add to stack)</code>
+| No
+| Closes up the submenu panel
+|-
+| <code>OpenInventory(js_raw_arg no args)</code>
+| No
+| opens the inventory menu from anywhere.
+|-
+| <code>OpenPlayMenu(js_raw_arg no args)</code>
+| No
+| opens the play menu from anywhere. EXAMPLE from party menu settings button from client
+|-
+| <code>OpenSidebarPanel(js_raw_arg no args)</code>
+| No
+| open the sidebar from a abutton click from anywhere
+|-
+| <code>OpenWatchMenu(js_raw_arg no args)</code>
+| No
+| opens the watch menu from anywhere.
+|-
+| <code>PageDown()</code>
+| No
+| Scroll the panel down by one page.
+|-
+| <code>PageLeft()</code>
+| No
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelDown()</code>
+| Yes
+| Scroll the panel down by one page.
+|-
+| <code>PagePanelLeft()</code>
+| Yes
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelRight()</code>
+| Yes
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelUp()</code>
+| Yes
+| Scroll the panel up by one page.
+|-
+| <code>PageRight()</code>
+| No
+| Scroll the panel right by one page.
+|-
+| <code>PageUp()</code>
+| No
+| Scroll the panel up by one page.
+|-
+| <code>PanoramaCastVoteNo()</code>
+| Yes
+| Cast a NO vote for the currently active vote issue
+|-
+| <code>PanoramaCastVoteYes()</code>
+| Yes
+| Cast a YES vote for the currently active vote issue
+|-
+| <code>PanoramaGameTimeJumpEvent(float time jump delta in seconds)</code>
+| No
+| Fired when game time jump occurs usually for replay jumping back in time.
+|-
+| <code>RefreshActiveInventoryList()</code>
+| No
+| Make the active list get the items in it
+|-
+| <code>RefreshPickemPage(js_raw_arg tournament ID)</code>
+| No
+| refreshed pickem data
+|-
+| <code>RemoveItemFromCart(js_raw_arg itemID)</code>
+| No
+| Remove an item of this id from the tournament store shopping cart
+|-
+| <code>RemoveStyle(string class)</code>
+| Yes
+| Remove a CSS class from a panel.
+|-
+| <code>RemoveStyleFromEachChild(string class)</code>
+| Yes
+| Remove a CSS class from all children of this panel.
+|-
+| <code>Scoreboard_CycleStats()</code>
+| No
+| Cycle the stats.
+|-
+| <code>Scoreboard_GetFreeForAllPlayerPosition(js_raw_arg xuid)</code>
+| No
+| Given a player index and an xuid, returns top three players on that player's team
+|-
+| <code>Scoreboard_GetFreeForAllTopThreePlayers()</code>
+| No
+| Returns top three players on team 'ANY'
+|-
+| <code>Scoreboard_SetMuteAbusive(js_raw_arg newVal)</code>
+| No
+| set cl_mute_frequent_abusers
+|-
+| <code>Scoreboard_UnborrowMusicKit()</code>
+| No
+| Cancel Music Kit borrowing
+|-
+| <code>ScrollDown()</code>
+| No
+| Scroll the panel down by one line.
+|-
+| <code>ScrollLeft()</code>
+| No
+| Scroll the panel left by one line.
+|-
+| <code>ScrollPanelDown()</code>
+| Yes
+| Scroll the panel down by one line.
+|-
+| <code>ScrollPanelLeft()</code>
+| Yes
+| Scroll the panel left by one line.
+|-
+| <code>ScrollPanelRight()</code>
+| Yes
+| Scroll the panel right by one line.
+|-
+| <code>ScrollPanelUp()</code>
+| Yes
+| Scroll the panel up by one line.
+|-
+| <code>ScrollRight()</code>
+| No
+| Scroll the panel right by one line.
+|-
+| <code>ScrollToBottom()</code>
+| Yes
+| Scroll this panel to the bottom.
+|-
+| <code>ScrollToTop()</code>
+| Yes
+| Scroll this panel to the top.
+|-
+| <code>ScrollUp()</code>
+| No
+| Scroll the panel up by one line.
+|-
+| <code>SetChildPanelsSelected(bool selected)</code>
+| Yes
+| Set whether any child panels are :selected.
+|-
+| <code>SetInputFocus()</code>
+| Yes
+| Set focus to this panel.
+|-
+| <code>SetPanelEnabled(bool enabled)</code>
+| Yes
+| Sets whether the given panel is enabled
+|-
+| <code>SetPanelSelected(bool selected)</code>
+| Yes
+| Set whether this panel is :selected.
+|-
+| <code>ShowAcceptPopup(js_raw_arg popup)</code>
+| No
+| Fired when accept match popup is shown.
+|-
+| <code>ShowAcknowledgePopup(js_raw_arg updatetype, js_raw_arg itemid)</code>
+| No
+| show acknowledge popup, also takes params for when an item is updated but does not need to be acknowledged like after using a nametag
+|-
+| <code>ShowActiveTournamentPage(js_raw_arg tab to show id)</code>
+| No
+| Opens active tournament page in the watch panel
+|-
+| <code>ShowCenterPrintText(string utf8 message string, enum CCenterPrint::EPriority)</code>
+| No
+| Display the string in the center of the hud.
+|-
+| <code>ShowContentPanel(js_raw_arg no args)</code>
+| No
+| Show a content panel
+|-
+| <code>ShowDeleteItemConfirmationPopup(js_raw_arg itemid)</code>
+| No
+| When a user is trying to delete an item from inventory
+|-
+| <code>ShowLoadoutForItem(js_raw_arg slot)</code>
+| No
+| subslot
+|-
+| <code>ShowResetMusicVolumePopup(js_raw_arg itemid)</code>
+| No
+| When a user is trying to equip a musickit but has thier music volume off from inventory
+|-
+| <code>ShowSelectItemForCapabilityPopup(js_raw_arg capability, js_raw_arg itemid, js_raw_arg itemid2)</code>
+| No
+| Show popup in Inventory that allow you to select a second item for a capability that requires 2 items
+|-
+| <code>ShowTournamentStore()</code>
+| No
+| Show tournament store popup
+|-
+| <code>ShowTradeUpPanel()</code>
+| No
+| Show trade up panel
+|-
+| <code>ShowUseItemOnceConfirmationPopup(js_raw_arg itemid)</code>
+| No
+| When a user is trying to use an item from inventory that can be used once
+|-
+| <code>ShowVoteContextMenu()</code>
+| No
+| Show vote context menu in pause menu
+|-
+| <code>SidebarContextMenuActive(js_raw_arg bActive)</code>
+| No
+| Let the sidebar panel know if a context menu is active on a section of it.
+|-
+| <code>SidebarIsCollapsed(js_raw_arg bActive)</code>
+| No
+| Is sidebar collapsed.
+|-
+| <code>StartDecodeableAnim(js_raw_arg no args)</code>
+| No
+| tells the decode panel to play the animation
+|-
+| <code>StaticHudMenu_EntrySelected(class panorama::CPanel2D * Panel representing the selected entry)</code>
+| No
+| Fired when any of the entries is activated
+|-
+| <code>StreamPanelClosed()</code>
+| No
+| Notify that user has closed stream panel
+|-
+| <code>SwitchStyle(string slot, string class)</code>
+| Yes
+| Switch which class the panel has for a given attribute slot. Allows easily changing between multiple states.
+|-
+| <code>TogglePanelSelected()</code>
+| Yes
+| Toggle whether this panel is :selected.
+|-
+| <code>ToggleStyle(string class)</code>
+| Yes
+| Toggle whether a panel has the given CSS class.
+|-
+| <code>TriggerStyle(string class)</code>
+| Yes
+| Remove then immediately add back a CSS class from a panel. Useful to re-trigger events like animations or sound effects.
+|-
+| <code>UpdateTradeUpPanel()</code>
+| No
+| Update trade up panel
+|-
+| <code>UpdateVanityModelData(js_raw_arg no args)</code>
+| No
+| Update the vanity model with list of anims and model panel from updated settings
+|}

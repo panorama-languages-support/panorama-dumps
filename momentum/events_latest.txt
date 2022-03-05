@@ -1,0 +1,493 @@
+{| class="wikitable"
+! Event
+! Panel Event
+! Description
+|-
+| <code>AddStyle(string class)</code>
+| Yes
+| Add a CSS class to a panel.
+|-
+| <code>AddStyleToEachChild(string class)</code>
+| Yes
+| Add a CSS class to all children of this panel.
+|-
+| <code>AsyncEvent(float delay, event eventToFire)</code>
+| No
+| Fire another event after a delay (in seconds).
+|-
+| <code>ChaosHudProcessInput()</code>
+| No
+| Fired when visible every tick or every other tick if the panel allows it.
+|-
+| <code>ChaosHudThink()</code>
+| No
+| Fired every tick or every other tick if the panel allows it.
+|-
+| <code>DbgTestHudVote(string string: test type)</code>
+| No
+| Internal testing event.
+|-
+| <code>DemoPlaybackControl(string string, float float)</code>
+| No
+| Control demo playback
+|-
+| <code>Drawer_UpdateLobbyButton(js_raw_arg imgsrc)</code>
+| No
+| playercount
+|-
+| <code>DropInputFocus()</code>
+| Yes
+| Drop focus entirely from the window containing this panel.
+|-
+| <code>HideContentPanel(js_raw_arg no args)</code>
+| No
+| Hide all the main menu content panels and show the default home dashboard
+|-
+| <code>HudLeaderboards_Closed()</code>
+| No
+| Fired when the HUD leaderboards panel is closed.
+|-
+| <code>HudLeaderboards_OnMouseActive()</code>
+| No
+| Fired when the HUD leaderboards panel gains mouse input.
+|-
+| <code>HudLeaderboards_Opened()</code>
+| No
+| Fired when the HUD Leaderboards panel is opened.
+|-
+| <code>IfHasClassEvent(string class, event eventToFire)</code>
+| Yes
+| Fire another event if this panel has a given class.
+|-
+| <code>IfHoverOtherEvent(string otherPanelID, event eventToFire)</code>
+| Yes
+| Fire another event if currently hovering over a panel with the given ID.
+|-
+| <code>IfNotHasClassEvent(string class, event eventToFire)</code>
+| Yes
+| Fire another event if this panel does not have a given class.
+|-
+| <code>IfNotHoverOtherEvent(string otherPanelID, event eventToFire)</code>
+| Yes
+| Fire another event if not currently hovering over a panel with the given ID.
+|-
+| <code>LayoutReloaded()</code>
+| No
+| Called when a panel has its layout reloaded.
+|-
+| <code>Leaderboards_MapDataSet(bool isOfficial)</code>
+| No
+| Fired when the leaderboards has its map data set but before times are loaded.
+|-
+| <code>Leaderboards_OnPlayReplay()</code>
+| No
+| Fired when the leaderboards has attempted to play a replay.
+|-
+| <code>Leaderboards_TimeListTypeChanged(int32 oldType, int32 newType)</code>
+| No
+| Fired when the selected time list type is changed, passing the old times list type and new type that was selected.
+|-
+| <code>Leaderboards_TimesFiltered(int32 count)</code>
+| No
+| Fired when the leaderboards is applying filters to the list, and passes the number of maps to display.
+|-
+| <code>Lobby_SetMaxPlayers(js_raw_arg maxplayers)</code>
+| No
+| Sets the max players of your lobby
+|-
+| <code>MainMenuTabHidden(js_raw_arg tabid)</code>
+| No
+| Fired when a main menu tab is closed
+|-
+| <code>MainMenuTabShown(js_raw_arg tabid)</code>
+| No
+| Alert main menu tabs when they are shown, in case there is a data update needed
+|-
+| <code>MapCache_CacheUpdate(int32 source)</code>
+| No
+| Fired when the map cache was updated from a given source.
+|-
+| <code>MapCache_MapLoad(string mapName)</code>
+| No
+| Fired when the cached map data for a map is loaded.
+|-
+| <code>MapCache_MapUpdate(uint32 mapID, bool , bool, bool, bool, bool)</code>
+| No
+| Fired when a given map has its own data updated.
+|-
+| <code>MapCache_SearchComplete(bool bSuccess)</code>
+| No
+| Fired when a search for maps completes, and whether it was successful.
+|-
+| <code>MapDownload_End(uint32 mapID, bool bError)</code>
+| No
+| Fired when a map download finishes, and whether it was successful or not.
+|-
+| <code>MapDownload_Progress(uint32 mapID, int32 sizeOfChunk, int32 offsetOfChunk)</code>
+| No
+| Fired when a map's download progress is calculated, where ( ( sizeOfChunk + offsetOfChunk)  / mapSize ) is the progress percent.
+|-
+| <code>MapDownload_Queued(uint32 mapID, bool bAdded)</code>
+| No
+| Fired when a map is queued for download or removed from the download queue.
+|-
+| <code>MapDownload_Size(uint32 mapID, uint64 mapSizeInBytes)</code>
+| No
+| Fired when a map's download size is obtained.
+|-
+| <code>MapDownload_Start(uint32 mapID, string mapName)</code>
+| No
+| Fired when a map starts to download, passing the mapID and mapName along.
+|-
+| <code>MapEntry_MapDataUpdate()</code>
+| Yes
+| Fired when this map entry is updated from its map data.
+|-
+| <code>MapSelector_ConfirmCancelDownload(uint32 mapID)</code>
+| No
+| Confirms the cancellation of the download for the given mapID.
+|-
+| <code>MapSelector_ConfirmOverwrite(uint32 mapID)</code>
+| No
+| Confirms overwrite of the given map, allowing download.
+|-
+| <code>MapSelector_MapsFiltered(int32 count)</code>
+| No
+| Fired when the maps list has applied filters, with the number of maps that passed the filters passed along.
+|-
+| <code>MapSelector_RemoveMapFromDownloadQueue(uint32 mapID)</code>
+| No
+| Removes the given mapID from the download queue.
+|-
+| <code>MapSelector_SelectedDataUpdate()</code>
+| No
+| Fired when the selected map has its data updated.
+|-
+| <code>MapSelector_ShowConfirmOverwrite(uint32 mapID)</code>
+| No
+| Tells JavaScript to show a confirm/deny popup that fires MapSelector_ConfirmOverwrite( mapID ) upon confirm option select.
+|-
+| <code>MapSelector_ToggleMapStatus(uint32 mapID, bool bIsLibary, bool bIsAdding)</code>
+| No
+| Toggles adding/removing a map to/from library/favorites
+|-
+| <code>MapSelector_TryPlayMap(uint32 mapID)</code>
+| No
+| Tries playing the given mapID. If it is not found locally, it is added to library and downloaded.
+|-
+| <code>MapSelector_TryPlayMap_GameModeOverride(uint32 mapID, int32 gamemode)</code>
+| No
+| Like MapSelector_TryPlayMap, but takes the gamemode to override to before passing it along.
+|-
+| <code>MapSelector_TryPlayMap_Outcome(bool wasSuccessful)</code>
+| No
+| Fired after TryPlayMap returns, if wasSuccessful the map was started, otherwise the map may be downloading or failed to start.
+|-
+| <code>MovePanelDown(int32 repeatCount)</code>
+| Yes
+| Move down from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelLeft(int32 repeatCount)</code>
+| Yes
+| Move left from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelRight(int32 repeatCount)</code>
+| Yes
+| Move right from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>MovePanelUp(int32 repeatCount)</code>
+| Yes
+| Move up from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+|-
+| <code>OnAimOverGhostChange(class panorama::CPanel2D * Ghost entpanel, bool whether aim is over ghost)</code>
+| No
+| Called when the player's aim first goes over or leaves a ghost.
+|-
+| <code>OnAllMomentumWeaponsDropped()</code>
+| No
+| Called when all of the player's weapons are dropped.
+|-
+| <code>OnChargeToggled(bool whether the chargemeter is enabled)</code>
+| No
+| Stickybomb charge meter has changed enabled state
+|-
+| <code>OnChargeUpdate(float speed in units/second, float percentage charged)</code>
+| No
+| Stickybomb charge speed has been updated
+|-
+| <code>OnConcEntityPanelThink()</code>
+| No
+| Conc entity panel think; called each frame conc entity panels are active
+|-
+| <code>OnCookUpdate(float time in seconds, float percentage)</code>
+| No
+| Concgrenade cook time has been updated
+|-
+| <code>OnDefragMovementModeChange(int32 defrag movement mode)</code>
+| No
+| Called when Defrag's movement mode is changed (eg. going from VQ3 to CPM).
+|-
+| <code>OnExplosiveHitSpeedUpdate(float explosive hit speed)</code>
+| No
+| Called on explosive hit speed update
+|-
+| <code>OnJumpSpeedUpdate(float jump speed)</code>
+| No
+| Called on jump speed update
+|-
+| <code>OnMomentumPlayerPracticeModeStateChange(bool enabled)</code>
+| No
+| Called on practice mode state change for the local player.
+|-
+| <code>OnMomentumReplayStarted(bool firstperson)</code>
+| No
+| Called when a replay is loaded.
+|-
+| <code>OnMomentumReplayStopped()</code>
+| No
+| Called when a replay unloaded.
+|-
+| <code>OnMomentumTimerStateChange(int32 ent, int32 type)</code>
+| No
+| Called on timer state change.
+|-
+| <code>OnMomentumWeaponStateChange(int32 mode, int32 weapon id)</code>
+| No
+| Called when the player switches to, picks up, or drops a weapon.
+|-
+| <code>OnMomentumZoneChange(bool entering, bool is linear, int32 current zone, int32 current track num, int32 timer state)</code>
+| No
+| Called whenever the player changes zones.
+|-
+| <code>OnNewChatEntry(class panorama::CPanel2D * msgpanel)</code>
+| No
+| A new chat entry panel has been created
+|-
+| <code>OnRampBoardSpeedUpdate(float ramp board speed)</code>
+| No
+| Called on ramp board speed update
+|-
+| <code>OnRampLeaveSpeedUpdate(float ramp leave speed)</code>
+| No
+| Called on ramp leave speed update
+|-
+| <code>OnRangeColorProfilesLoaded(bool success)</code>
+| No
+| Called when range color profiles have been loaded
+|-
+| <code>OnRangeColorProfilesSaved(bool success)</code>
+| No
+| Called when range color profiles have been saved
+|-
+| <code>OnSaveStateUpdate(int32 savestate count, int32 current loaded savestate, bool using menu)</code>
+| No
+| Called on savestate state change.
+|-
+| <code>OnSpeedometerSettingsLoaded(bool success)</code>
+| No
+| Called when speedometer settings have been loaded
+|-
+| <code>OnSpeedometerSettingsSaved(bool success)</code>
+| No
+| Called when speedometer settings have been saved
+|-
+| <code>OnSpeedometerUpdate(float Delta time)</code>
+| No
+| Called on speed update, respecting mom_hud_speedometer_fps
+|-
+| <code>OnStickyPanelStateChanged(class panorama::CPanel2D * sticky panel, int32 state, int32 previous state)</code>
+| No
+| State of a sticky panel has changed
+|-
+| <code>PageDown()</code>
+| No
+| Scroll the panel down by one page.
+|-
+| <code>PageLeft()</code>
+| No
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelDown()</code>
+| Yes
+| Scroll the panel down by one page.
+|-
+| <code>PagePanelLeft()</code>
+| Yes
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelRight()</code>
+| Yes
+| Scroll the panel left by one page.
+|-
+| <code>PagePanelUp()</code>
+| Yes
+| Scroll the panel up by one page.
+|-
+| <code>PageRight()</code>
+| No
+| Scroll the panel right by one page.
+|-
+| <code>PageUp()</code>
+| No
+| Scroll the panel up by one page.
+|-
+| <code>PanoramaCastVoteNo()</code>
+| Yes
+| Cast a NO vote for the currently active vote issue
+|-
+| <code>PanoramaCastVoteYes()</code>
+| Yes
+| Cast a YES vote for the currently active vote issue
+|-
+| <code>PanoramaGameTimeJumpEvent(float time jump delta in seconds)</code>
+| No
+| Fired when game time jump occurs usually for replay jumping back in time.
+|-
+| <code>RefreshLobbyList()</code>
+| No
+| Send a refresh request for the lobby list
+|-
+| <code>ReloadBackground()</code>
+| No
+| Reloads the main menu background
+|-
+| <code>RemoveStyle(string class)</code>
+| Yes
+| Remove a CSS class from a panel.
+|-
+| <code>RemoveStyleFromEachChild(string class)</code>
+| Yes
+| Remove a CSS class from all children of this panel.
+|-
+| <code>Safeguard_ChangeMap(string mapName)</code>
+| No
+| This event is fired when the act of changing the map is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+|-
+| <code>Safeguard_Disconnect()</code>
+| No
+| This event is fired when the act of disconnecting from the map is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+|-
+| <code>Safeguard_Quit()</code>
+| No
+| This event is fired when the act of quitting the game is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+|-
+| <code>Safeguard_Response(int32 type)</code>
+| No
+| This event is supposed to be fired back to C++ code to be able to handle the outcome of the Safeguard popup response. The type is the RunSafeguardType.
+|-
+| <code>ScrollDown()</code>
+| No
+| Scroll the panel down by one line.
+|-
+| <code>ScrollLeft()</code>
+| No
+| Scroll the panel left by one line.
+|-
+| <code>ScrollPanelDown()</code>
+| Yes
+| Scroll the panel down by one line.
+|-
+| <code>ScrollPanelLeft()</code>
+| Yes
+| Scroll the panel left by one line.
+|-
+| <code>ScrollPanelRight()</code>
+| Yes
+| Scroll the panel right by one line.
+|-
+| <code>ScrollPanelUp()</code>
+| Yes
+| Scroll the panel up by one line.
+|-
+| <code>ScrollRight()</code>
+| No
+| Scroll the panel right by one line.
+|-
+| <code>ScrollToBottom()</code>
+| Yes
+| Scroll this panel to the bottom.
+|-
+| <code>ScrollToTop()</code>
+| Yes
+| Scroll this panel to the top.
+|-
+| <code>ScrollUp()</code>
+| No
+| Scroll the panel up by one line.
+|-
+| <code>SetChildPanelsSelected(bool selected)</code>
+| Yes
+| Set whether any child panels are :selected.
+|-
+| <code>SetInputFocus()</code>
+| Yes
+| Set focus to this panel.
+|-
+| <code>SetPanelEnabled(bool enabled)</code>
+| Yes
+| Sets whether the given panel is enabled
+|-
+| <code>SetPanelSelected(bool selected)</code>
+| Yes
+| Set whether this panel is :selected.
+|-
+| <code>SettingsNavigateToPanel(js_raw_arg category, js_raw_arg settingPanel)</code>
+| No
+| Navigates to a setting by panel handle
+|-
+| <code>ShowCenterPrintText(string utf8 message string, enum CCenterPrint::EPriority)</code>
+| No
+| Display the string in the center of the hud.
+|-
+| <code>ShowContentPanel(js_raw_arg no args)</code>
+| No
+| Show a content panel
+|-
+| <code>ShowVoteContextMenu()</code>
+| No
+| Show vote context menu in pause menu
+|-
+| <code>StaticHudMenu_EntrySelected(class panorama::CPanel2D * Panel representing the selected entry)</code>
+| No
+| Fired when any of the entries is activated
+|-
+| <code>SteamLobby_Enter(uint64 lobbyID)</code>
+| No
+| Fired when a Steam lobby is successfully entered.
+|-
+| <code>SteamLobby_Exit()</code>
+| No
+| Fired when a lobby is exited.
+|-
+| <code>SteamLobby_MemberJoinLeave(uint64 lobbyID, uint64 userID, bool bJoined)</code>
+| No
+| Fired when a lobby member either joins or leaves
+|-
+| <code>SwitchStyle(string slot, string class)</code>
+| Yes
+| Switch which class the panel has for a given attribute slot. Allows easily changing between multiple states.
+|-
+| <code>TogglePanelSelected()</code>
+| Yes
+| Toggle whether this panel is :selected.
+|-
+| <code>ToggleStyle(string class)</code>
+| Yes
+| Toggle whether a panel has the given CSS class.
+|-
+| <code>Tricks_TrackedTrickStep(int32 trackedTrickStepNum)</code>
+| No
+| Fired when a tracked trick has a step updated.
+|-
+| <code>Tricks_TrickDataLoaded()</code>
+| No
+| Fired when a map's trick data is loaded.
+|-
+| <code>Tricks_TrickTracked(int32 trackedTrickID)</code>
+| No
+| Fired when a trick is being tracked, passing along the trick ID.
+|-
+| <code>TriggerStyle(string class)</code>
+| Yes
+| Remove then immediately add back a CSS class from a panel. Useful to re-trigger events like animations or sound effects.
+|}
