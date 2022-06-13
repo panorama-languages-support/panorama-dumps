@@ -27,6 +27,10 @@
 | void $.clear()
 | $.persistentStorage.clear().  When invoked, will empty all keys out of the storage.
 |-
+| CompressString
+| void $.CompressString( js_raw_arg  )
+| $.CompressString(str). Compresses the given string, and encodes result in base64.
+|-
 | CreatePanel
 | void $.CreatePanel( js_raw_arg  )
 | Create a new panel
@@ -34,6 +38,10 @@
 | DbgIsReloadingScript
 | void $.DbgIsReloadingScript( js_raw_arg  )
 | Call during JS startup code to check if script is being reloaded
+|-
+| DecompressString
+| void $.DecompressString( js_raw_arg  )
+| $.DecompressString(str). Decompresses the given base64 encoded input into a string.
 |-
 | DefineEvent
 | void $.DefineEvent( js_raw_arg  )
@@ -6794,6 +6802,40 @@
 | bool ConVarEnabler.UpdateFocusInContext()
 | 
 |}
+== DefragAPI ==
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| GetDFPhysicsMode
+| int32 DefragAPI.GetDFPhysicsMode()
+| Gets the current defrag movement mode (0=VQ3, 1=CPM).
+|-
+| GetHUDAccelCFG
+| unknown DefragAPI.GetHUDAccelCFG()
+| Gets the hud acceleration config. See the mom_df_hud_accel_* convars for reference.
+|-
+| GetHUDFOV
+| float DefragAPI.GetHUDFOV()
+| Gets mom_df_hud_fov_override_enable. 0 = OFF, > 0 = overridden FOV.
+|-
+| GetHUDProjection
+| int32 DefragAPI.GetHUDProjection()
+| Gets mom_df_hud_projection. 0 = Perspective, 1 = Arc length, 2 = Panoramic.
+|-
+| GetHUDSnapCFG
+| unknown DefragAPI.GetHUDSnapCFG()
+| Gets the defrag hud snap config. See the mom_df_hud_snap_* convars for reference.
+|-
+| GetHUDVelocityCFG
+| unknown DefragAPI.GetHUDVelocityCFG()
+| Gets the defrag hud velocity config. See the mom_df_hud_velocity_* convars for reference.
+|-
+| GetHUDWIndicatorCFG
+| unknown DefragAPI.GetHUDWIndicatorCFG()
+| Gets the defrag hud W Indicator config. See the mom_df_hud_windicator_* convars for reference.
+|}
 == DropDown ==
 {| class="standard-table" style="width: 100%;"
 ! Property Name
@@ -7844,6 +7886,11 @@
 | X
 | 
 |-
+| dragging
+| bool
+| X
+| 
+|-
 | enabled
 | bool
 |  
@@ -8884,6 +8931,480 @@
 | GetRandomTipForGameMode
 | cstring GameModeAPI.GetRandomTipForGameMode( int32 gamemode )
 | Gets a random tip for the given gamemode. On first call, will load tips from file.
+|}
+== HudComparisons ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| currentRunData
+| unknown
+| X
+| Gets the current run's data
+|-
+| currentRunStats
+| unknown
+| X
+| Gets the current run's stats
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool HudComparisons.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool HudComparisons.AcceptsInput()
+| 
+|-
+| AddClass
+| void HudComparisons.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void HudComparisons.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool HudComparisons.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool HudComparisons.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown HudComparisons.Children()
+| 
+|-
+| ClearPanelEvent
+| void HudComparisons.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void HudComparisons.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool HudComparisons.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown HudComparisons.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void HudComparisons.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void HudComparisons.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void HudComparisons.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown HudComparisons.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown HudComparisons.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown HudComparisons.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown HudComparisons.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 HudComparisons.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring HudComparisons.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 HudComparisons.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown HudComparisons.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 HudComparisons.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 HudComparisons.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown HudComparisons.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown HudComparisons.GetLastChild()
+| 
+|-
+| GetParent
+| unknown HudComparisons.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown HudComparisons.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool HudComparisons.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool HudComparisons.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool HudComparisons.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool HudComparisons.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool HudComparisons.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool HudComparisons.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool HudComparisons.IsSelected()
+| 
+|-
+| IsTransparent
+| bool HudComparisons.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool HudComparisons.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void HudComparisons.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void HudComparisons.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void HudComparisons.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool HudComparisons.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void HudComparisons.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void HudComparisons.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void HudComparisons.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void HudComparisons.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void HudComparisons.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool HudComparisons.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void HudComparisons.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void HudComparisons.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void HudComparisons.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void HudComparisons.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void HudComparisons.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void HudComparisons.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void HudComparisons.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void HudComparisons.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void HudComparisons.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void HudComparisons.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void HudComparisons.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void HudComparisons.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void HudComparisons.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void HudComparisons.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void HudComparisons.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void HudComparisons.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool HudComparisons.SetFocus()
+| 
+|-
+| SetHasClass
+| void HudComparisons.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void HudComparisons.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void HudComparisons.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void HudComparisons.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void HudComparisons.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void HudComparisons.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void HudComparisons.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void HudComparisons.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void HudComparisons.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void HudComparisons.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void HudComparisons.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void HudComparisons.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void HudComparisons.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool HudComparisons.UpdateFocusInContext()
+| 
 |}
 == HudLeaderboards ==
 {| class="standard-table" style="width: 100%;"
@@ -11252,6 +11773,934 @@
 | bool Leaderboards.UpdateFocusInContext()
 | 
 |}
+== LevelIndicator ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool LevelIndicator.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool LevelIndicator.AcceptsInput()
+| 
+|-
+| AddClass
+| void LevelIndicator.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void LevelIndicator.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool LevelIndicator.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool LevelIndicator.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown LevelIndicator.Children()
+| 
+|-
+| ClearPanelEvent
+| void LevelIndicator.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void LevelIndicator.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool LevelIndicator.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown LevelIndicator.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void LevelIndicator.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void LevelIndicator.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void LevelIndicator.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown LevelIndicator.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown LevelIndicator.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown LevelIndicator.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown LevelIndicator.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 LevelIndicator.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring LevelIndicator.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 LevelIndicator.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown LevelIndicator.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 LevelIndicator.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 LevelIndicator.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown LevelIndicator.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown LevelIndicator.GetLastChild()
+| 
+|-
+| GetParent
+| unknown LevelIndicator.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown LevelIndicator.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool LevelIndicator.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool LevelIndicator.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool LevelIndicator.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool LevelIndicator.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool LevelIndicator.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool LevelIndicator.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool LevelIndicator.IsSelected()
+| 
+|-
+| IsTransparent
+| bool LevelIndicator.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool LevelIndicator.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void LevelIndicator.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void LevelIndicator.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void LevelIndicator.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool LevelIndicator.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void LevelIndicator.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void LevelIndicator.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void LevelIndicator.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void LevelIndicator.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void LevelIndicator.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool LevelIndicator.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void LevelIndicator.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void LevelIndicator.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void LevelIndicator.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void LevelIndicator.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void LevelIndicator.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void LevelIndicator.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void LevelIndicator.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void LevelIndicator.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void LevelIndicator.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void LevelIndicator.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void LevelIndicator.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void LevelIndicator.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void LevelIndicator.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void LevelIndicator.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void LevelIndicator.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void LevelIndicator.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool LevelIndicator.SetFocus()
+| 
+|-
+| SetHasClass
+| void LevelIndicator.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void LevelIndicator.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void LevelIndicator.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void LevelIndicator.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void LevelIndicator.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void LevelIndicator.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void LevelIndicator.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void LevelIndicator.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void LevelIndicator.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void LevelIndicator.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void LevelIndicator.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void LevelIndicator.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void LevelIndicator.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool LevelIndicator.UpdateFocusInContext()
+| 
+|}
+== LineGraph ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool LineGraph.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool LineGraph.AcceptsInput()
+| 
+|-
+| AddClass
+| void LineGraph.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void LineGraph.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool LineGraph.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool LineGraph.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown LineGraph.Children()
+| 
+|-
+| ClearPanelEvent
+| void LineGraph.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void LineGraph.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool LineGraph.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown LineGraph.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void LineGraph.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void LineGraph.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void LineGraph.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown LineGraph.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown LineGraph.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown LineGraph.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown LineGraph.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 LineGraph.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring LineGraph.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 LineGraph.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown LineGraph.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 LineGraph.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 LineGraph.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown LineGraph.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown LineGraph.GetLastChild()
+| 
+|-
+| GetParent
+| unknown LineGraph.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown LineGraph.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool LineGraph.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool LineGraph.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool LineGraph.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool LineGraph.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool LineGraph.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool LineGraph.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool LineGraph.IsSelected()
+| 
+|-
+| IsTransparent
+| bool LineGraph.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool LineGraph.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void LineGraph.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void LineGraph.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void LineGraph.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool LineGraph.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void LineGraph.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void LineGraph.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void LineGraph.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void LineGraph.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void LineGraph.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool LineGraph.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void LineGraph.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void LineGraph.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void LineGraph.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void LineGraph.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void LineGraph.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void LineGraph.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void LineGraph.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void LineGraph.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void LineGraph.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void LineGraph.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void LineGraph.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void LineGraph.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void LineGraph.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void LineGraph.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void LineGraph.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void LineGraph.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool LineGraph.SetFocus()
+| 
+|-
+| SetHasClass
+| void LineGraph.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void LineGraph.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void LineGraph.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void LineGraph.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void LineGraph.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void LineGraph.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void LineGraph.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void LineGraph.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void LineGraph.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void LineGraph.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void LineGraph.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void LineGraph.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void LineGraph.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool LineGraph.UpdateFocusInContext()
+| 
+|}
 == MapCacheAPI ==
 {| class="standard-table" style="width: 100%;"
 ! Method Name
@@ -13281,19 +14730,23 @@
 |-
 | GetCosmeticXpForLevel
 | int32 MomentumAPI.GetCosmeticXpForLevel( int32 level )
-| Gets the total XP needed to reach a given level
+| Gets the total XP needed to reach a given level.
 |-
 | GetPlayerLevel
 | int32 MomentumAPI.GetPlayerLevel()
-| Gets the local players XP
+| Gets the local players XP.
 |-
 | GetPlayerMoney
 | int32 MomentumAPI.GetPlayerMoney()
-| Gets the amount of money the local player has (Units)
+| Gets the amount of money the local player has (Units).
 |-
 | GetPlayerXp
 | int32 MomentumAPI.GetPlayerXp()
-| Gets the local players level
+| Gets the local players level.
+|-
+| GetVersionInfo
+| unknown MomentumAPI.GetVersionInfo()
+| Gets Momentum's current version, DX11 state, mapping mode state, and git commit.
 |}
 == MomentumChat ==
 {| class="standard-table" style="width: 100%;"
@@ -14252,9 +15705,21 @@
 ! Signature
 ! Description
 |-
-| GetDFPhysicsMode
-| int32 MomentumMovementAPI.GetDFPhysicsMode()
-| Gets the current defrag movement mode (0=VQ3, 1=CPM).
+| GetLastMoveData
+| unknown MomentumMovementAPI.GetLastMoveData()
+| Gets an object containing the last move data.
+|-
+| GetMoveType
+| int32 MomentumMovementAPI.GetMoveType()
+| Gets the player's movetype (eg. normal, on a ladder, noclip, etc.)
+|-
+| GetStopspeed
+| float MomentumMovementAPI.GetStopspeed()
+| Gets the current value of sv_stopspeed.
+|-
+| GetTickInterval
+| float MomentumMovementAPI.GetTickInterval()
+| Gets the physics tick interval in seconds.
 |}
 == MomentumPlayerAPI ==
 {| class="standard-table" style="width: 100%;"
@@ -14291,6 +15756,43 @@
 | Gets the player's practice mode state
 |}
 == MomentumReplayAPI ==
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| GetCurrentTick
+| int32 MomentumReplayAPI.GetCurrentTick()
+| Gets current replay tick or -1 if not applicable.
+|-
+| GetCurrentTime
+| float MomentumReplayAPI.GetCurrentTime()
+| Gets current replay time or -1 if not applicable.
+|-
+| GetTotalTicks
+| int32 MomentumReplayAPI.GetTotalTicks()
+| Gets total ticks of current replay or -1 if not applicable.
+|-
+| GetTotalTime
+| float MomentumReplayAPI.GetTotalTime()
+| Gets total time of current replay or -1 if not applicable.
+|-
+| IsPaused
+| bool MomentumReplayAPI.IsPaused()
+| Returns whether the current replay is paused or false if not applicable.
+|-
+| IsWatching
+| bool MomentumReplayAPI.IsWatching()
+| Whether the local player is currently playing back a replay
+|-
+| SetProgress
+| void MomentumReplayAPI.SetProgress( float percentage )
+| Set completion fraction of current replay if applicable.
+|-
+| TogglePause
+| void MomentumReplayAPI.TogglePause()
+| Toggles paused state of current replay if applicable.
+|}
 == MomentumSaveStateAPI ==
 == MomentumTimerAPI ==
 {| class="standard-table" style="width: 100%;"
@@ -14331,6 +15833,480 @@
 | GetWeaponSlot
 | int32 MomentumWeaponAPI.GetWeaponSlot( int32 weapon ID )
 | Gets the weapon slot for a specific weapon ID. Returns -1 if cannot find.
+|}
+== MomHudCgaz ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| alternateTicks
+| bool
+|  
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hiddenHUDBits
+| int32
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool MomHudCgaz.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool MomHudCgaz.AcceptsInput()
+| 
+|-
+| AddClass
+| void MomHudCgaz.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void MomHudCgaz.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool MomHudCgaz.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool MomHudCgaz.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown MomHudCgaz.Children()
+| 
+|-
+| ClearPanelEvent
+| void MomHudCgaz.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void MomHudCgaz.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool MomHudCgaz.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown MomHudCgaz.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void MomHudCgaz.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void MomHudCgaz.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void MomHudCgaz.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown MomHudCgaz.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown MomHudCgaz.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown MomHudCgaz.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown MomHudCgaz.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 MomHudCgaz.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring MomHudCgaz.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 MomHudCgaz.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown MomHudCgaz.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 MomHudCgaz.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 MomHudCgaz.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown MomHudCgaz.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown MomHudCgaz.GetLastChild()
+| 
+|-
+| GetParent
+| unknown MomHudCgaz.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown MomHudCgaz.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool MomHudCgaz.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool MomHudCgaz.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool MomHudCgaz.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool MomHudCgaz.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool MomHudCgaz.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool MomHudCgaz.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool MomHudCgaz.IsSelected()
+| 
+|-
+| IsTransparent
+| bool MomHudCgaz.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool MomHudCgaz.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void MomHudCgaz.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void MomHudCgaz.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void MomHudCgaz.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool MomHudCgaz.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void MomHudCgaz.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void MomHudCgaz.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void MomHudCgaz.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void MomHudCgaz.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void MomHudCgaz.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool MomHudCgaz.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void MomHudCgaz.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void MomHudCgaz.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void MomHudCgaz.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void MomHudCgaz.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void MomHudCgaz.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void MomHudCgaz.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void MomHudCgaz.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void MomHudCgaz.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void MomHudCgaz.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void MomHudCgaz.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void MomHudCgaz.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void MomHudCgaz.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void MomHudCgaz.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void MomHudCgaz.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void MomHudCgaz.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void MomHudCgaz.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool MomHudCgaz.SetFocus()
+| 
+|-
+| SetHasClass
+| void MomHudCgaz.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void MomHudCgaz.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void MomHudCgaz.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void MomHudCgaz.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudCgaz.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudCgaz.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void MomHudCgaz.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void MomHudCgaz.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void MomHudCgaz.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void MomHudCgaz.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void MomHudCgaz.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void MomHudCgaz.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void MomHudCgaz.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool MomHudCgaz.UpdateFocusInContext()
+| 
 |}
 == MomHudConcCooktime ==
 {| class="standard-table" style="width: 100%;"
@@ -15317,6 +17293,11 @@
 | X
 | 
 |-
+| alternateTicks
+| bool
+|  
+| 
+|-
 | checked
 | bool
 |  
@@ -15349,6 +17330,11 @@
 |-
 | enabled
 | bool
+|  
+| 
+|-
+| hiddenHUDBits
+| int32
 |  
 | 
 |-
@@ -15737,6 +17723,948 @@
 |-
 | UpdateFocusInContext
 | bool MomHudMapInfo.UpdateFocusInContext()
+| 
+|}
+== MomHudReplayControls ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool MomHudReplayControls.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool MomHudReplayControls.AcceptsInput()
+| 
+|-
+| AddClass
+| void MomHudReplayControls.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void MomHudReplayControls.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool MomHudReplayControls.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool MomHudReplayControls.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown MomHudReplayControls.Children()
+| 
+|-
+| ClearPanelEvent
+| void MomHudReplayControls.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void MomHudReplayControls.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool MomHudReplayControls.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown MomHudReplayControls.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void MomHudReplayControls.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void MomHudReplayControls.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void MomHudReplayControls.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown MomHudReplayControls.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown MomHudReplayControls.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown MomHudReplayControls.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown MomHudReplayControls.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 MomHudReplayControls.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring MomHudReplayControls.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 MomHudReplayControls.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown MomHudReplayControls.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 MomHudReplayControls.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 MomHudReplayControls.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown MomHudReplayControls.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown MomHudReplayControls.GetLastChild()
+| 
+|-
+| GetParent
+| unknown MomHudReplayControls.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown MomHudReplayControls.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool MomHudReplayControls.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool MomHudReplayControls.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool MomHudReplayControls.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool MomHudReplayControls.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool MomHudReplayControls.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool MomHudReplayControls.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool MomHudReplayControls.IsSelected()
+| 
+|-
+| IsTransparent
+| bool MomHudReplayControls.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool MomHudReplayControls.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void MomHudReplayControls.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void MomHudReplayControls.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void MomHudReplayControls.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool MomHudReplayControls.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void MomHudReplayControls.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void MomHudReplayControls.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void MomHudReplayControls.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void MomHudReplayControls.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void MomHudReplayControls.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool MomHudReplayControls.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void MomHudReplayControls.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void MomHudReplayControls.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void MomHudReplayControls.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void MomHudReplayControls.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void MomHudReplayControls.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void MomHudReplayControls.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void MomHudReplayControls.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void MomHudReplayControls.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void MomHudReplayControls.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void MomHudReplayControls.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void MomHudReplayControls.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void MomHudReplayControls.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void MomHudReplayControls.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void MomHudReplayControls.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void MomHudReplayControls.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void MomHudReplayControls.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool MomHudReplayControls.SetFocus()
+| 
+|-
+| SetHasClass
+| void MomHudReplayControls.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void MomHudReplayControls.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void MomHudReplayControls.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void MomHudReplayControls.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudReplayControls.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudReplayControls.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void MomHudReplayControls.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void MomHudReplayControls.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void MomHudReplayControls.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void MomHudReplayControls.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void MomHudReplayControls.ToggleClass( cstring  )
+| 
+|-
+| ToggleHiddenState
+| void MomHudReplayControls.ToggleHiddenState()
+| 
+|-
+| TriggerClass
+| void MomHudReplayControls.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void MomHudReplayControls.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool MomHudReplayControls.UpdateFocusInContext()
+| 
+|}
+== MomHudSpecInfo ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| alternateTicks
+| bool
+|  
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hiddenHUDBits
+| int32
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool MomHudSpecInfo.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool MomHudSpecInfo.AcceptsInput()
+| 
+|-
+| AddClass
+| void MomHudSpecInfo.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void MomHudSpecInfo.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool MomHudSpecInfo.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool MomHudSpecInfo.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown MomHudSpecInfo.Children()
+| 
+|-
+| ClearPanelEvent
+| void MomHudSpecInfo.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void MomHudSpecInfo.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool MomHudSpecInfo.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown MomHudSpecInfo.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void MomHudSpecInfo.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void MomHudSpecInfo.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void MomHudSpecInfo.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown MomHudSpecInfo.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown MomHudSpecInfo.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown MomHudSpecInfo.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown MomHudSpecInfo.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 MomHudSpecInfo.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring MomHudSpecInfo.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 MomHudSpecInfo.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown MomHudSpecInfo.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 MomHudSpecInfo.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 MomHudSpecInfo.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown MomHudSpecInfo.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown MomHudSpecInfo.GetLastChild()
+| 
+|-
+| GetParent
+| unknown MomHudSpecInfo.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown MomHudSpecInfo.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool MomHudSpecInfo.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool MomHudSpecInfo.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool MomHudSpecInfo.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool MomHudSpecInfo.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool MomHudSpecInfo.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool MomHudSpecInfo.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool MomHudSpecInfo.IsSelected()
+| 
+|-
+| IsTransparent
+| bool MomHudSpecInfo.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool MomHudSpecInfo.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void MomHudSpecInfo.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void MomHudSpecInfo.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void MomHudSpecInfo.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool MomHudSpecInfo.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void MomHudSpecInfo.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void MomHudSpecInfo.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void MomHudSpecInfo.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void MomHudSpecInfo.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void MomHudSpecInfo.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool MomHudSpecInfo.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void MomHudSpecInfo.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void MomHudSpecInfo.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void MomHudSpecInfo.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void MomHudSpecInfo.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void MomHudSpecInfo.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void MomHudSpecInfo.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void MomHudSpecInfo.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void MomHudSpecInfo.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void MomHudSpecInfo.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void MomHudSpecInfo.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void MomHudSpecInfo.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void MomHudSpecInfo.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void MomHudSpecInfo.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void MomHudSpecInfo.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void MomHudSpecInfo.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void MomHudSpecInfo.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool MomHudSpecInfo.SetFocus()
+| 
+|-
+| SetHasClass
+| void MomHudSpecInfo.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void MomHudSpecInfo.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void MomHudSpecInfo.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void MomHudSpecInfo.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudSpecInfo.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudSpecInfo.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void MomHudSpecInfo.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void MomHudSpecInfo.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void MomHudSpecInfo.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void MomHudSpecInfo.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void MomHudSpecInfo.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void MomHudSpecInfo.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void MomHudSpecInfo.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool MomHudSpecInfo.UpdateFocusInContext()
 | 
 |}
 == MomHudSpeedometer ==
@@ -16205,6 +19133,480 @@
 |-
 | UpdateFocusInContext
 | bool MomHudSpeedometer.UpdateFocusInContext()
+| 
+|}
+== MomHudStatus ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| alternateTicks
+| bool
+|  
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hiddenHUDBits
+| int32
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool MomHudStatus.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool MomHudStatus.AcceptsInput()
+| 
+|-
+| AddClass
+| void MomHudStatus.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void MomHudStatus.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool MomHudStatus.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool MomHudStatus.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown MomHudStatus.Children()
+| 
+|-
+| ClearPanelEvent
+| void MomHudStatus.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void MomHudStatus.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool MomHudStatus.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown MomHudStatus.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void MomHudStatus.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void MomHudStatus.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void MomHudStatus.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown MomHudStatus.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown MomHudStatus.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown MomHudStatus.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown MomHudStatus.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 MomHudStatus.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring MomHudStatus.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 MomHudStatus.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown MomHudStatus.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 MomHudStatus.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 MomHudStatus.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown MomHudStatus.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown MomHudStatus.GetLastChild()
+| 
+|-
+| GetParent
+| unknown MomHudStatus.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown MomHudStatus.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool MomHudStatus.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool MomHudStatus.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool MomHudStatus.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool MomHudStatus.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool MomHudStatus.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool MomHudStatus.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool MomHudStatus.IsSelected()
+| 
+|-
+| IsTransparent
+| bool MomHudStatus.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool MomHudStatus.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void MomHudStatus.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void MomHudStatus.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void MomHudStatus.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool MomHudStatus.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void MomHudStatus.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void MomHudStatus.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void MomHudStatus.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void MomHudStatus.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void MomHudStatus.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool MomHudStatus.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void MomHudStatus.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void MomHudStatus.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void MomHudStatus.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void MomHudStatus.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void MomHudStatus.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void MomHudStatus.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void MomHudStatus.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void MomHudStatus.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void MomHudStatus.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void MomHudStatus.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void MomHudStatus.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void MomHudStatus.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void MomHudStatus.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void MomHudStatus.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void MomHudStatus.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void MomHudStatus.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool MomHudStatus.SetFocus()
+| 
+|-
+| SetHasClass
+| void MomHudStatus.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void MomHudStatus.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void MomHudStatus.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void MomHudStatus.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudStatus.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void MomHudStatus.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void MomHudStatus.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void MomHudStatus.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void MomHudStatus.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void MomHudStatus.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void MomHudStatus.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void MomHudStatus.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void MomHudStatus.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool MomHudStatus.UpdateFocusInContext()
 | 
 |}
 == MomHudStickyCharge ==
@@ -17656,6 +21058,11 @@
 | X
 | 
 |-
+| alternateTicks
+| bool
+|  
+| 
+|-
 | checked
 | bool
 |  
@@ -17688,6 +21095,11 @@
 |-
 | enabled
 | bool
+|  
+| 
+|-
+| hiddenHUDBits
+| int32
 |  
 | 
 |-
@@ -19538,6 +22950,470 @@
 | bool Panel.UpdateFocusInContext()
 | 
 |}
+== PlayerCard ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool PlayerCard.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool PlayerCard.AcceptsInput()
+| 
+|-
+| AddClass
+| void PlayerCard.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void PlayerCard.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool PlayerCard.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool PlayerCard.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown PlayerCard.Children()
+| 
+|-
+| ClearPanelEvent
+| void PlayerCard.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void PlayerCard.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool PlayerCard.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown PlayerCard.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void PlayerCard.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void PlayerCard.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void PlayerCard.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown PlayerCard.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown PlayerCard.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown PlayerCard.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown PlayerCard.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 PlayerCard.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring PlayerCard.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 PlayerCard.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown PlayerCard.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 PlayerCard.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 PlayerCard.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown PlayerCard.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown PlayerCard.GetLastChild()
+| 
+|-
+| GetParent
+| unknown PlayerCard.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown PlayerCard.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool PlayerCard.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool PlayerCard.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool PlayerCard.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool PlayerCard.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool PlayerCard.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool PlayerCard.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool PlayerCard.IsSelected()
+| 
+|-
+| IsTransparent
+| bool PlayerCard.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool PlayerCard.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void PlayerCard.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void PlayerCard.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void PlayerCard.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool PlayerCard.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void PlayerCard.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void PlayerCard.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void PlayerCard.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void PlayerCard.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void PlayerCard.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool PlayerCard.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void PlayerCard.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void PlayerCard.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void PlayerCard.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void PlayerCard.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void PlayerCard.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void PlayerCard.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void PlayerCard.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void PlayerCard.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void PlayerCard.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void PlayerCard.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void PlayerCard.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void PlayerCard.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void PlayerCard.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void PlayerCard.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void PlayerCard.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void PlayerCard.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool PlayerCard.SetFocus()
+| 
+|-
+| SetHasClass
+| void PlayerCard.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void PlayerCard.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void PlayerCard.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void PlayerCard.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void PlayerCard.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void PlayerCard.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void PlayerCard.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void PlayerCard.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void PlayerCard.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void PlayerCard.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void PlayerCard.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void PlayerCard.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void PlayerCard.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool PlayerCard.UpdateFocusInContext()
+| 
+|}
 == PopupCustomLayout ==
 {| class="standard-table" style="width: 100%;"
 ! Property Name
@@ -20000,6 +23876,474 @@
 |-
 | UpdateFocusInContext
 | bool PopupCustomLayout.UpdateFocusInContext()
+| 
+|}
+== PopupGeneric ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool PopupGeneric.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool PopupGeneric.AcceptsInput()
+| 
+|-
+| AddClass
+| void PopupGeneric.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void PopupGeneric.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool PopupGeneric.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool PopupGeneric.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown PopupGeneric.Children()
+| 
+|-
+| ClearPanelEvent
+| void PopupGeneric.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void PopupGeneric.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool PopupGeneric.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown PopupGeneric.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void PopupGeneric.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void PopupGeneric.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void PopupGeneric.DeleteKeyframes( unknown  )
+| 
+|-
+| EnableHTML
+| void PopupGeneric.EnableHTML()
+| 
+|-
+| FindChild
+| unknown PopupGeneric.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown PopupGeneric.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown PopupGeneric.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown PopupGeneric.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 PopupGeneric.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring PopupGeneric.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 PopupGeneric.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown PopupGeneric.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 PopupGeneric.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 PopupGeneric.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown PopupGeneric.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown PopupGeneric.GetLastChild()
+| 
+|-
+| GetParent
+| unknown PopupGeneric.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown PopupGeneric.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool PopupGeneric.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool PopupGeneric.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool PopupGeneric.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool PopupGeneric.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool PopupGeneric.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool PopupGeneric.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool PopupGeneric.IsSelected()
+| 
+|-
+| IsTransparent
+| bool PopupGeneric.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool PopupGeneric.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void PopupGeneric.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void PopupGeneric.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void PopupGeneric.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool PopupGeneric.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void PopupGeneric.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void PopupGeneric.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void PopupGeneric.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void PopupGeneric.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void PopupGeneric.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool PopupGeneric.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void PopupGeneric.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void PopupGeneric.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void PopupGeneric.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void PopupGeneric.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void PopupGeneric.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void PopupGeneric.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void PopupGeneric.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void PopupGeneric.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void PopupGeneric.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void PopupGeneric.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void PopupGeneric.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void PopupGeneric.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void PopupGeneric.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void PopupGeneric.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void PopupGeneric.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void PopupGeneric.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool PopupGeneric.SetFocus()
+| 
+|-
+| SetHasClass
+| void PopupGeneric.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void PopupGeneric.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void PopupGeneric.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void PopupGeneric.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void PopupGeneric.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void PopupGeneric.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void PopupGeneric.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void PopupGeneric.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void PopupGeneric.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void PopupGeneric.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void PopupGeneric.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void PopupGeneric.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void PopupGeneric.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool PopupGeneric.UpdateFocusInContext()
 | 
 |}
 == ProgressBar ==
@@ -21459,6 +25803,10 @@
 ! Signature
 ! Description
 |-
+| GetLoadedComparison
+| unknown RunComparisonsAPI.GetLoadedComparison()
+| Gets the loaded comparison run
+|-
 | GetLoadedComparisonOverallDiff
 | float RunComparisonsAPI.GetLoadedComparisonOverallDiff( int32 zone number )
 | Gets the overall comparison diff in seconds
@@ -21545,6 +25893,11 @@
 |-
 | desiredlayoutwidth
 | float
+| X
+| 
+|-
+| dragging
+| bool
 | X
 | 
 |-
@@ -21982,6 +26335,16 @@
 | UpdateFocusInContext
 | bool Slider.UpdateFocusInContext()
 | 
+|}
+== SpectatorAPI ==
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| GetSpecList
+| unknown SpectatorAPI.GetSpecList()
+| Gets the list of spectators as steam ids.
 |}
 == SpeedometerSettingsAPI ==
 {| class="standard-table" style="width: 100%;"
@@ -23036,6 +27399,496 @@
 |-
 | UpdateFocusInContext
 | bool TextEntry.UpdateFocusInContext()
+| 
+|}
+== ToastAPI ==
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| ClearToasts
+| void ToastAPI.ClearToasts( int32 location )
+| Clears the toast panels by location. -1 means 'all' locations
+|-
+| CreateToast
+| void ToastAPI.CreateToast( cstring id, cstring title, cstring message, int32 location, int32 duration, cstring icon, cstring style )
+| Creates a Toast panel.
+|-
+| CreateToast_Custom
+| void ToastAPI.CreateToast_Custom( cstring id, cstring layoutFile, int32 location, int32 duration, unknown params )
+| Creates a custom Toast panel with a given layout file.
+|-
+| CreateToast_Simple
+| void ToastAPI.CreateToast_Simple( cstring title, cstring message )
+| Creates a simple info Toast panel in the top right with default duration.
+|-
+| DeleteToast
+| void ToastAPI.DeleteToast( cstring id )
+| Delete an existing toast by ID
+|}
+== ToastGeneric ==
+{| class="standard-table" style="width: 100%;"
+! Property Name
+! Type
+! ReadOnly
+! Description
+|-
+| activationenabled
+| bool
+|  
+| 
+|-
+| actuallayoutheight
+| float
+| X
+| 
+|-
+| actuallayoutwidth
+| float
+| X
+| 
+|-
+| actualuiscale_x
+| float
+| X
+| 
+|-
+| actualuiscale_y
+| float
+| X
+| 
+|-
+| actualxoffset
+| float
+| X
+| 
+|-
+| actualyoffset
+| float
+| X
+| 
+|-
+| checked
+| bool
+|  
+| 
+|-
+| contentheight
+| float
+| X
+| 
+|-
+| contentwidth
+| float
+| X
+| 
+|-
+| defaultfocus
+| cstring
+|  
+| 
+|-
+| desiredlayoutheight
+| float
+| X
+| 
+|-
+| desiredlayoutwidth
+| float
+| X
+| 
+|-
+| enabled
+| bool
+|  
+| 
+|-
+| hittest
+| bool
+|  
+| 
+|-
+| hittestchildren
+| bool
+|  
+| 
+|-
+| id
+| cstring
+| X
+| 
+|-
+| inputnamespace
+| cstring
+|  
+| 
+|-
+| layoutfile
+| cstring
+| X
+| 
+|-
+| paneltype
+| cstring
+| X
+| 
+|-
+| rememberchildfocus
+| bool
+|  
+| 
+|-
+| scrolloffset_x
+| float
+| X
+| 
+|-
+| scrolloffset_y
+| float
+| X
+| 
+|-
+| selectionpos_x
+| float
+|  
+| 
+|-
+| selectionpos_y
+| float
+|  
+| 
+|-
+| style
+| unknown
+| X
+| 
+|-
+| tabindex
+| float
+|  
+| 
+|-
+| visible
+| bool
+|  
+| 
+|}
+{| class="standard-table" style="width: 100%;"
+! Method Name
+! Signature
+! Description
+|-
+| AcceptsFocus
+| bool ToastGeneric.AcceptsFocus()
+| 
+|-
+| AcceptsInput
+| bool ToastGeneric.AcceptsInput()
+| 
+|-
+| AddClass
+| void ToastGeneric.AddClass( cstring  )
+| 
+|-
+| ApplyStyles
+| void ToastGeneric.ApplyStyles( bool  )
+| 
+|-
+| BAscendantHasClass
+| bool ToastGeneric.BAscendantHasClass( cstring  )
+| 
+|-
+| CanSeeInParentScroll
+| bool ToastGeneric.CanSeeInParentScroll()
+| 
+|-
+| Children
+| unknown ToastGeneric.Children()
+| 
+|-
+| ClearPanelEvent
+| void ToastGeneric.ClearPanelEvent( cstring  )
+| 
+|-
+| ClearPropertyFromCode
+| void ToastGeneric.ClearPropertyFromCode( unknown  )
+| 
+|-
+| CreateChildren
+| bool ToastGeneric.CreateChildren( cstring  )
+| 
+|-
+| CreateCopyOfCSSKeyframes
+| unknown ToastGeneric.CreateCopyOfCSSKeyframes( cstring  )
+| 
+|-
+| Data
+| void ToastGeneric.Data( js_raw_arg  )
+| 
+|-
+| DeleteAsync
+| void ToastGeneric.DeleteAsync( float  )
+| 
+|-
+| DeleteKeyframes
+| void ToastGeneric.DeleteKeyframes( unknown  )
+| 
+|-
+| FindChild
+| unknown ToastGeneric.FindChild( cstring  )
+| 
+|-
+| FindChildInLayoutFile
+| unknown ToastGeneric.FindChildInLayoutFile( cstring  )
+| 
+|-
+| FindChildrenWithClassTraverse
+| unknown ToastGeneric.FindChildrenWithClassTraverse( cstring  )
+| 
+|-
+| FindChildTraverse
+| unknown ToastGeneric.FindChildTraverse( cstring  )
+| 
+|-
+| GetAttributeInt
+| int32 ToastGeneric.GetAttributeInt( cstring , int32  )
+| 
+|-
+| GetAttributeString
+| cstring ToastGeneric.GetAttributeString( cstring , cstring  )
+| 
+|-
+| GetAttributeUInt32
+| uint32 ToastGeneric.GetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| GetChild
+| unknown ToastGeneric.GetChild( int32  )
+| 
+|-
+| GetChildCount
+| int32 ToastGeneric.GetChildCount()
+| 
+|-
+| GetChildIndex
+| int32 ToastGeneric.GetChildIndex( unknown  )
+| 
+|-
+| GetFirstChild
+| unknown ToastGeneric.GetFirstChild()
+| 
+|-
+| GetLastChild
+| unknown ToastGeneric.GetLastChild()
+| 
+|-
+| GetParent
+| unknown ToastGeneric.GetParent()
+| 
+|-
+| GetPositionWithinWindow
+| unknown ToastGeneric.GetPositionWithinWindow()
+| 
+|-
+| HasClass
+| bool ToastGeneric.HasClass( cstring  )
+| 
+|-
+| HasDescendantKeyFocus
+| bool ToastGeneric.HasDescendantKeyFocus()
+| 
+|-
+| HasHoverStyle
+| bool ToastGeneric.HasHoverStyle()
+| 
+|-
+| HasKeyFocus
+| bool ToastGeneric.HasKeyFocus()
+| 
+|-
+| IsDraggable
+| bool ToastGeneric.IsDraggable()
+| 
+|-
+| IsReadyForDisplay
+| bool ToastGeneric.IsReadyForDisplay()
+| 
+|-
+| IsSelected
+| bool ToastGeneric.IsSelected()
+| 
+|-
+| IsTransparent
+| bool ToastGeneric.IsTransparent()
+| 
+|-
+| LoadLayout
+| bool ToastGeneric.LoadLayout( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutAsync
+| void ToastGeneric.LoadLayoutAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutFromString
+| void ToastGeneric.LoadLayoutFromString( js_raw_arg  )
+| 
+|-
+| LoadLayoutFromStringAsync
+| void ToastGeneric.LoadLayoutFromStringAsync( cstring , bool , bool  )
+| 
+|-
+| LoadLayoutSnippet
+| bool ToastGeneric.LoadLayoutSnippet( cstring  )
+| 
+|-
+| MoveChildAfter
+| void ToastGeneric.MoveChildAfter( unknown , unknown  )
+| 
+|-
+| MoveChildBefore
+| void ToastGeneric.MoveChildBefore( unknown , unknown  )
+| 
+|-
+| RegisterForReadyEvents
+| void ToastGeneric.RegisterForReadyEvents( bool  )
+| 
+|-
+| RemoveAndDeleteChildren
+| void ToastGeneric.RemoveAndDeleteChildren()
+| 
+|-
+| RemoveClass
+| void ToastGeneric.RemoveClass( cstring  )
+| 
+|-
+| ScrollParentToFitWhenFocused
+| bool ToastGeneric.ScrollParentToFitWhenFocused()
+| 
+|-
+| ScrollParentToMakePanelFit
+| void ToastGeneric.ScrollParentToMakePanelFit( unknown , bool  )
+| 
+|-
+| ScrollToBottom
+| void ToastGeneric.ScrollToBottom()
+| 
+|-
+| ScrollToFitRegion
+| void ToastGeneric.ScrollToFitRegion( float , float , float , float , unknown , bool , bool  )
+| 
+|-
+| ScrollToLeftEdge
+| void ToastGeneric.ScrollToLeftEdge()
+| 
+|-
+| ScrollToRightEdge
+| void ToastGeneric.ScrollToRightEdge()
+| 
+|-
+| ScrollToTop
+| void ToastGeneric.ScrollToTop()
+| 
+|-
+| SetAcceptsFocus
+| void ToastGeneric.SetAcceptsFocus( bool  )
+| 
+|-
+| SetAttributeInt
+| void ToastGeneric.SetAttributeInt( cstring , int32  )
+| 
+|-
+| SetAttributeString
+| void ToastGeneric.SetAttributeString( cstring , cstring  )
+| 
+|-
+| SetAttributeUInt32
+| void ToastGeneric.SetAttributeUInt32( cstring , uint32  )
+| 
+|-
+| SetDialogVariable
+| void ToastGeneric.SetDialogVariable( cstring , cstring  )
+| 
+|-
+| SetDialogVariableFloat
+| void ToastGeneric.SetDialogVariableFloat( cstring , float  )
+| 
+|-
+| SetDialogVariableInt
+| void ToastGeneric.SetDialogVariableInt( cstring , int32  )
+| 
+|-
+| SetDialogVariableTime
+| void ToastGeneric.SetDialogVariableTime( cstring , unknown  )
+| 
+|-
+| SetDisableFocusOnMouseDown
+| void ToastGeneric.SetDisableFocusOnMouseDown( bool  )
+| 
+|-
+| SetDraggable
+| void ToastGeneric.SetDraggable( bool  )
+| 
+|-
+| SetFocus
+| bool ToastGeneric.SetFocus()
+| 
+|-
+| SetHasClass
+| void ToastGeneric.SetHasClass( cstring , bool  )
+| 
+|-
+| SetInputNamespace
+| void ToastGeneric.SetInputNamespace( cstring  )
+| 
+|-
+| SetPanelEvent
+| void ToastGeneric.SetPanelEvent( js_raw_arg  )
+| 
+|-
+| SetParent
+| void ToastGeneric.SetParent( unknown  )
+| 
+|-
+| SetReadyForDisplay
+| void ToastGeneric.SetReadyForDisplay( bool  )
+| 
+|-
+| SetReadyForDisplay
+| void ToastGeneric.SetReadyForDisplay( bool  )
+| 
+|-
+| SetScrollParentToFitWhenFocused
+| void ToastGeneric.SetScrollParentToFitWhenFocused( bool  )
+| 
+|-
+| SetTopOfInputContext
+| void ToastGeneric.SetTopOfInputContext( bool  )
+| 
+|-
+| SortChildrenOnAttribute
+| void ToastGeneric.SortChildrenOnAttribute( cstring , bool  )
+| 
+|-
+| SwitchClass
+| void ToastGeneric.SwitchClass( cstring , cstring  )
+| 
+|-
+| ToggleClass
+| void ToastGeneric.ToggleClass( cstring  )
+| 
+|-
+| TriggerClass
+| void ToastGeneric.TriggerClass( cstring  )
+| 
+|-
+| UpdateCurrentAnimationKeyframes
+| void ToastGeneric.UpdateCurrentAnimationKeyframes( unknown  )
+| 
+|-
+| UpdateFocusInContext
+| bool ToastGeneric.UpdateFocusInContext()
 | 
 |}
 == ToggleButton ==

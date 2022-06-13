@@ -2,492 +2,870 @@
 ! Event
 ! Panel Event
 ! Description
+! Can dispatch
+! Can listen for
 |-
 | <code>AddStyle(string class)</code>
 | Yes
 | Add a CSS class to a panel.
+| Yes
+| Yes
 |-
 | <code>AddStyleToEachChild(string class)</code>
 | Yes
 | Add a CSS class to all children of this panel.
+| Yes
+| Yes
 |-
 | <code>AsyncEvent(float delay, event eventToFire)</code>
 | No
 | Fire another event after a delay (in seconds).
+| Yes
+| No
 |-
 | <code>ChaosHudProcessInput()</code>
 | No
 | Fired when visible every tick or every other tick if the panel allows it.
+| Yes
+| Yes
 |-
 | <code>ChaosHudThink()</code>
 | No
 | Fired every tick or every other tick if the panel allows it.
+| Yes
+| Yes
 |-
 | <code>DbgTestHudVote(string string: test type)</code>
 | No
 | Internal testing event.
+| Yes
+| Yes
 |-
 | <code>DemoPlaybackControl(string string, float float)</code>
 | No
 | Control demo playback
+| Yes
+| Yes
+|-
+| <code>Drawer_ExtendAndNavigateToTab(js_raw_arg tabid)</code>
+| No
+| Open drawer if closed, and switch the tab to the specified tab
+| Yes
+| Yes
+|-
+| <code>Drawer_NavigateToTab(js_raw_arg tabid)</code>
+| No
+| Open drawer if closed, and switch the tab to the specified tab
+| Yes
+| Yes
 |-
 | <code>Drawer_UpdateLobbyButton(js_raw_arg imgsrc)</code>
 | No
 | playercount
+| Yes
+| Yes
 |-
 | <code>DropInputFocus()</code>
 | Yes
 | Drop focus entirely from the window containing this panel.
+| Yes
+| Yes
+|-
+| <code>EndOfRun_CompareRuns(class CMomReplayBase const * baseRun, class CMomReplayBase const * compareRun)</code>
+| No
+| Fired when the end of run panel should set the two runs to compare. baseRun is compared to compareRun.
+| No
+| Yes
+|-
+| <code>EndOfRun_Hide()</code>
+| No
+| Fired when the end of run panel should be hidden.
+| Yes
+| Yes
+|-
+| <code>EndOfRun_Result_RunSave(bool saved)</code>
+| No
+| Fired when the replay recording finishes and passes whether writing the file was successful.
+| No
+| Yes
+|-
+| <code>EndOfRun_Result_RunUpload(bool uploaded, int32 cosXP, int32 rankXP, int32 lvlGain)</code>
+| No
+| Fired when a run fails/succeeds at uploading.
+| No
+| Yes
+|-
+| <code>EndOfRun_Show(int32 showReason)</code>
+| No
+| Fired when the HUD leaderboards panel should show the end of run panel, showReason is 0 = player finished run, 1 = replay finished run, 2 = manually being shown.
+| Yes
+| Yes
 |-
 | <code>HideContentPanel(js_raw_arg no args)</code>
 | No
 | Hide all the main menu content panels and show the default home dashboard
+| Yes
+| Yes
+|-
+| <code>HudCompare_Update()</code>
+| No
+| Fired when the JS panel should update what it's showing
+| No
+| Yes
 |-
 | <code>HudLeaderboards_Closed()</code>
 | No
 | Fired when the HUD leaderboards panel is closed.
+| Yes
+| Yes
+|-
+| <code>HudLeaderboards_ForceClose()</code>
+| No
+| Force close the leaderboards
+| Yes
+| Yes
 |-
 | <code>HudLeaderboards_OnMouseActive()</code>
 | No
 | Fired when the HUD leaderboards panel gains mouse input.
+| Yes
+| Yes
 |-
 | <code>HudLeaderboards_Opened()</code>
 | No
 | Fired when the HUD Leaderboards panel is opened.
+| Yes
+| Yes
 |-
 | <code>IfHasClassEvent(string class, event eventToFire)</code>
 | Yes
 | Fire another event if this panel has a given class.
+| Yes
+| No
 |-
 | <code>IfHoverOtherEvent(string otherPanelID, event eventToFire)</code>
 | Yes
 | Fire another event if currently hovering over a panel with the given ID.
+| Yes
+| No
 |-
 | <code>IfNotHasClassEvent(string class, event eventToFire)</code>
 | Yes
 | Fire another event if this panel does not have a given class.
+| Yes
+| No
 |-
 | <code>IfNotHoverOtherEvent(string otherPanelID, event eventToFire)</code>
 | Yes
 | Fire another event if not currently hovering over a panel with the given ID.
+| Yes
+| No
 |-
 | <code>LayoutReloaded()</code>
 | No
 | Called when a panel has its layout reloaded.
+| Yes
+| Yes
 |-
 | <code>Leaderboards_MapDataSet(bool isOfficial)</code>
 | No
 | Fired when the leaderboards has its map data set but before times are loaded.
+| No
+| Yes
 |-
 | <code>Leaderboards_OnPlayReplay()</code>
 | No
 | Fired when the leaderboards has attempted to play a replay.
+| Yes
+| Yes
 |-
 | <code>Leaderboards_TimeListTypeChanged(int32 oldType, int32 newType)</code>
 | No
 | Fired when the selected time list type is changed, passing the old times list type and new type that was selected.
+| No
+| Yes
 |-
 | <code>Leaderboards_TimesFiltered(int32 count)</code>
 | No
 | Fired when the leaderboards is applying filters to the list, and passes the number of maps to display.
+| No
+| Yes
 |-
 | <code>Lobby_SetMaxPlayers(js_raw_arg maxplayers)</code>
 | No
 | Sets the max players of your lobby
+| Yes
+| Yes
 |-
 | <code>MainMenuTabHidden(js_raw_arg tabid)</code>
 | No
 | Fired when a main menu tab is closed
+| Yes
+| Yes
 |-
 | <code>MainMenuTabShown(js_raw_arg tabid)</code>
 | No
 | Alert main menu tabs when they are shown, in case there is a data update needed
+| Yes
+| Yes
 |-
 | <code>MapCache_CacheUpdate(int32 source)</code>
 | No
 | Fired when the map cache was updated from a given source.
+| No
+| Yes
 |-
 | <code>MapCache_MapLoad(string mapName)</code>
 | No
 | Fired when the cached map data for a map is loaded.
+| No
+| Yes
 |-
 | <code>MapCache_MapUpdate(uint32 mapID, bool , bool, bool, bool, bool)</code>
 | No
 | Fired when a given map has its own data updated.
+| No
+| Yes
 |-
 | <code>MapCache_SearchComplete(bool bSuccess)</code>
 | No
 | Fired when a search for maps completes, and whether it was successful.
+| No
+| Yes
 |-
 | <code>MapDownload_End(uint32 mapID, bool bError)</code>
 | No
 | Fired when a map download finishes, and whether it was successful or not.
+| No
+| Yes
 |-
 | <code>MapDownload_Progress(uint32 mapID, int32 sizeOfChunk, int32 offsetOfChunk)</code>
 | No
 | Fired when a map's download progress is calculated, where ( ( sizeOfChunk + offsetOfChunk)  / mapSize ) is the progress percent.
+| No
+| Yes
 |-
 | <code>MapDownload_Queued(uint32 mapID, bool bAdded)</code>
 | No
 | Fired when a map is queued for download or removed from the download queue.
+| No
+| Yes
 |-
 | <code>MapDownload_Size(uint32 mapID, uint64 mapSizeInBytes)</code>
 | No
 | Fired when a map's download size is obtained.
+| No
+| Yes
 |-
 | <code>MapDownload_Start(uint32 mapID, string mapName)</code>
 | No
 | Fired when a map starts to download, passing the mapID and mapName along.
+| No
+| Yes
 |-
 | <code>MapEntry_MapDataUpdate()</code>
 | Yes
 | Fired when this map entry is updated from its map data.
+| Yes
+| Yes
 |-
 | <code>MapSelector_ConfirmCancelDownload(uint32 mapID)</code>
 | No
 | Confirms the cancellation of the download for the given mapID.
+| Yes
+| Yes
 |-
 | <code>MapSelector_ConfirmOverwrite(uint32 mapID)</code>
 | No
 | Confirms overwrite of the given map, allowing download.
+| Yes
+| Yes
 |-
 | <code>MapSelector_MapsFiltered(int32 count)</code>
 | No
 | Fired when the maps list has applied filters, with the number of maps that passed the filters passed along.
+| Yes
+| Yes
 |-
 | <code>MapSelector_RemoveMapFromDownloadQueue(uint32 mapID)</code>
 | No
 | Removes the given mapID from the download queue.
+| Yes
+| Yes
 |-
 | <code>MapSelector_SelectedDataUpdate()</code>
 | No
 | Fired when the selected map has its data updated.
+| Yes
+| Yes
 |-
 | <code>MapSelector_ShowConfirmOverwrite(uint32 mapID)</code>
 | No
 | Tells JavaScript to show a confirm/deny popup that fires MapSelector_ConfirmOverwrite( mapID ) upon confirm option select.
+| Yes
+| Yes
 |-
 | <code>MapSelector_ToggleMapStatus(uint32 mapID, bool bIsLibary, bool bIsAdding)</code>
 | No
 | Toggles adding/removing a map to/from library/favorites
+| Yes
+| Yes
 |-
 | <code>MapSelector_TryPlayMap(uint32 mapID)</code>
 | No
 | Tries playing the given mapID. If it is not found locally, it is added to library and downloaded.
+| Yes
+| Yes
 |-
 | <code>MapSelector_TryPlayMap_GameModeOverride(uint32 mapID, int32 gamemode)</code>
 | No
 | Like MapSelector_TryPlayMap, but takes the gamemode to override to before passing it along.
+| Yes
+| Yes
 |-
 | <code>MapSelector_TryPlayMap_Outcome(bool wasSuccessful)</code>
 | No
 | Fired after TryPlayMap returns, if wasSuccessful the map was started, otherwise the map may be downloading or failed to start.
+| Yes
+| Yes
+|-
+| <code>MomentumSpecListMaxNamesUpdate(int32 max names)</code>
+| No
+| Called when mom_hud_specinfo_names_count changes
+| No
+| Yes
+|-
+| <code>MomentumSpectatorUpdate()</code>
+| No
+| Called when lobby-wide spectator state changes.
+| No
+| Yes
 |-
 | <code>MovePanelDown(int32 repeatCount)</code>
 | Yes
 | Move down from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+| Yes
+| Yes
 |-
 | <code>MovePanelLeft(int32 repeatCount)</code>
 | Yes
 | Move left from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+| Yes
+| Yes
 |-
 | <code>MovePanelRight(int32 repeatCount)</code>
 | Yes
 | Move right from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+| Yes
+| Yes
 |-
 | <code>MovePanelUp(int32 repeatCount)</code>
 | Yes
 | Move up from the panel. By default, this will change the focus position, but other panel types may implement this differently.
+| Yes
+| Yes
 |-
 | <code>OnAimOverGhostChange(class panorama::CPanel2D * Ghost entpanel, bool whether aim is over ghost)</code>
 | No
 | Called when the player's aim first goes over or leaves a ghost.
+| No
+| Yes
 |-
 | <code>OnAllMomentumWeaponsDropped()</code>
 | No
 | Called when all of the player's weapons are dropped.
+| No
+| Yes
 |-
 | <code>OnChargeToggled(bool whether the chargemeter is enabled)</code>
 | No
 | Stickybomb charge meter has changed enabled state
+| Yes
+| Yes
 |-
 | <code>OnChargeUpdate(float speed in units/second, float percentage charged)</code>
 | No
 | Stickybomb charge speed has been updated
+| Yes
+| Yes
 |-
 | <code>OnConcEntityPanelThink()</code>
 | No
 | Conc entity panel think; called each frame conc entity panels are active
+| Yes
+| Yes
 |-
 | <code>OnCookUpdate(float time in seconds, float percentage)</code>
 | No
 | Concgrenade cook time has been updated
+| Yes
+| Yes
+|-
+| <code>OnDefragHUDAccelChange()</code>
+| No
+| Called when the player changes an accel setting (mom_df_hud_accel_*).
+| No
+| Yes
+|-
+| <code>OnDefragHUDFOVChange()</code>
+| No
+| Called when the player changes the DF HUD FOV setting (mom_df_hud_fov_*).
+| No
+| Yes
+|-
+| <code>OnDefragHUDProjectionChange()</code>
+| No
+| Called when the player changes mom_df_hud_projection.
+| No
+| Yes
+|-
+| <code>OnDefragHUDSnapChange()</code>
+| No
+| Called when the player changes a snap setting (mom_df_hud_snap_*).
+| No
+| Yes
+|-
+| <code>OnDefragHUDVelocityChange()</code>
+| No
+| Called when the player changes a velocity setting (mom_df_hud_velocity_*).
+| No
+| Yes
+|-
+| <code>OnDefragHUDWIndicatorChange()</code>
+| No
+| Called when the player changes a W Indicator setting (mom_df_hud_windicator_*).
+| No
+| Yes
 |-
 | <code>OnDefragMovementModeChange(int32 defrag movement mode)</code>
 | No
 | Called when Defrag's movement mode is changed (eg. going from VQ3 to CPM).
+| No
+| Yes
 |-
 | <code>OnExplosiveHitSpeedUpdate(float explosive hit speed)</code>
 | No
 | Called on explosive hit speed update
+| Yes
+| Yes
 |-
 | <code>OnJumpSpeedUpdate(float jump speed)</code>
 | No
 | Called on jump speed update
+| Yes
+| Yes
 |-
 | <code>OnMomentumPlayerPracticeModeStateChange(bool enabled)</code>
 | No
 | Called on practice mode state change for the local player.
+| No
+| Yes
+|-
+| <code>OnMomentumQuitPrompt(bool To desktop)</code>
+| No
+| Fires when quit_prompt is called.
+| Yes
+| Yes
 |-
 | <code>OnMomentumReplayStarted(bool firstperson)</code>
 | No
 | Called when a replay is loaded.
+| No
+| Yes
 |-
 | <code>OnMomentumReplayStopped()</code>
 | No
 | Called when a replay unloaded.
+| No
+| Yes
 |-
 | <code>OnMomentumTimerStateChange(int32 ent, int32 type)</code>
 | No
 | Called on timer state change.
+| No
+| Yes
 |-
 | <code>OnMomentumWeaponStateChange(int32 mode, int32 weapon id)</code>
 | No
 | Called when the player switches to, picks up, or drops a weapon.
+| No
+| Yes
 |-
 | <code>OnMomentumZoneChange(bool entering, bool is linear, int32 current zone, int32 current track num, int32 timer state)</code>
 | No
 | Called whenever the player changes zones.
+| No
+| Yes
 |-
 | <code>OnNewChatEntry(class panorama::CPanel2D * msgpanel)</code>
 | No
 | A new chat entry panel has been created
+| No
+| Yes
 |-
 | <code>OnRampBoardSpeedUpdate(float ramp board speed)</code>
 | No
 | Called on ramp board speed update
+| Yes
+| Yes
 |-
 | <code>OnRampLeaveSpeedUpdate(float ramp leave speed)</code>
 | No
 | Called on ramp leave speed update
+| Yes
+| Yes
 |-
 | <code>OnRangeColorProfilesLoaded(bool success)</code>
 | No
 | Called when range color profiles have been loaded
+| No
+| Yes
 |-
 | <code>OnRangeColorProfilesSaved(bool success)</code>
 | No
 | Called when range color profiles have been saved
+| No
+| Yes
 |-
 | <code>OnSaveStateUpdate(int32 savestate count, int32 current loaded savestate, bool using menu)</code>
 | No
 | Called on savestate state change.
+| No
+| Yes
 |-
 | <code>OnSpeedometerSettingsLoaded(bool success)</code>
 | No
 | Called when speedometer settings have been loaded
+| No
+| Yes
 |-
 | <code>OnSpeedometerSettingsSaved(bool success)</code>
 | No
 | Called when speedometer settings have been saved
+| No
+| Yes
 |-
 | <code>OnSpeedometerUpdate(float Delta time)</code>
 | No
 | Called on speed update, respecting mom_hud_speedometer_fps
+| Yes
+| Yes
 |-
 | <code>OnStickyPanelStateChanged(class panorama::CPanel2D * sticky panel, int32 state, int32 previous state)</code>
 | No
 | State of a sticky panel has changed
+| No
+| Yes
 |-
 | <code>PageDown()</code>
 | No
 | Scroll the panel down by one page.
+| Yes
+| Yes
 |-
 | <code>PageLeft()</code>
 | No
 | Scroll the panel left by one page.
+| Yes
+| Yes
 |-
 | <code>PagePanelDown()</code>
 | Yes
 | Scroll the panel down by one page.
+| Yes
+| Yes
 |-
 | <code>PagePanelLeft()</code>
 | Yes
 | Scroll the panel left by one page.
+| Yes
+| Yes
 |-
 | <code>PagePanelRight()</code>
 | Yes
 | Scroll the panel left by one page.
+| Yes
+| Yes
 |-
 | <code>PagePanelUp()</code>
 | Yes
 | Scroll the panel up by one page.
+| Yes
+| Yes
 |-
 | <code>PageRight()</code>
 | No
 | Scroll the panel right by one page.
+| Yes
+| Yes
 |-
 | <code>PageUp()</code>
 | No
 | Scroll the panel up by one page.
+| Yes
+| Yes
 |-
 | <code>PanoramaCastVoteNo()</code>
 | Yes
 | Cast a NO vote for the currently active vote issue
+| Yes
+| Yes
 |-
 | <code>PanoramaCastVoteYes()</code>
 | Yes
 | Cast a YES vote for the currently active vote issue
+| Yes
+| Yes
 |-
 | <code>PanoramaGameTimeJumpEvent(float time jump delta in seconds)</code>
 | No
 | Fired when game time jump occurs usually for replay jumping back in time.
+| Yes
+| Yes
 |-
 | <code>RefreshLobbyList()</code>
 | No
 | Send a refresh request for the lobby list
+| Yes
+| Yes
 |-
 | <code>ReloadBackground()</code>
 | No
 | Reloads the main menu background
+| Yes
+| Yes
 |-
 | <code>RemoveStyle(string class)</code>
 | Yes
 | Remove a CSS class from a panel.
+| Yes
+| Yes
 |-
 | <code>RemoveStyleFromEachChild(string class)</code>
 | Yes
 | Remove a CSS class from all children of this panel.
+| Yes
+| Yes
 |-
 | <code>Safeguard_ChangeMap(string mapName)</code>
 | No
 | This event is fired when the act of changing the map is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+| Yes
+| Yes
 |-
 | <code>Safeguard_Disconnect()</code>
 | No
 | This event is fired when the act of disconnecting from the map is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+| Yes
+| Yes
 |-
 | <code>Safeguard_Quit()</code>
 | No
 | This event is fired when the act of quitting the game is safeguarded. Respond to this via dispatching a Safeguard_Response event if the user acccepts.
+| Yes
+| Yes
 |-
 | <code>Safeguard_Response(int32 type)</code>
 | No
 | This event is supposed to be fired back to C++ code to be able to handle the outcome of the Safeguard popup response. The type is the RunSafeguardType.
+| Yes
+| Yes
 |-
 | <code>ScrollDown()</code>
 | No
 | Scroll the panel down by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollLeft()</code>
 | No
 | Scroll the panel left by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollPanelDown()</code>
 | Yes
 | Scroll the panel down by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollPanelLeft()</code>
 | Yes
 | Scroll the panel left by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollPanelRight()</code>
 | Yes
 | Scroll the panel right by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollPanelUp()</code>
 | Yes
 | Scroll the panel up by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollRight()</code>
 | No
 | Scroll the panel right by one line.
+| Yes
+| Yes
 |-
 | <code>ScrollToBottom()</code>
 | Yes
 | Scroll this panel to the bottom.
+| Yes
+| Yes
 |-
 | <code>ScrollToTop()</code>
 | Yes
 | Scroll this panel to the top.
+| Yes
+| Yes
 |-
 | <code>ScrollUp()</code>
 | No
 | Scroll the panel up by one line.
+| Yes
+| Yes
 |-
 | <code>SetChildPanelsSelected(bool selected)</code>
 | Yes
 | Set whether any child panels are :selected.
+| Yes
+| Yes
 |-
 | <code>SetInputFocus()</code>
 | Yes
 | Set focus to this panel.
+| Yes
+| Yes
 |-
 | <code>SetPanelEnabled(bool enabled)</code>
 | Yes
 | Sets whether the given panel is enabled
+| Yes
+| Yes
 |-
 | <code>SetPanelSelected(bool selected)</code>
 | Yes
 | Set whether this panel is :selected.
+| Yes
+| Yes
 |-
 | <code>SettingsNavigateToPanel(js_raw_arg category, js_raw_arg settingPanel)</code>
 | No
 | Navigates to a setting by panel handle
+| Yes
+| Yes
 |-
 | <code>ShowCenterPrintText(string utf8 message string, enum CCenterPrint::EPriority)</code>
 | No
 | Display the string in the center of the hud.
+| No
+| Yes
 |-
 | <code>ShowContentPanel(js_raw_arg no args)</code>
 | No
 | Show a content panel
+| Yes
+| Yes
 |-
 | <code>ShowVoteContextMenu()</code>
 | No
 | Show vote context menu in pause menu
+| Yes
+| Yes
 |-
 | <code>StaticHudMenu_EntrySelected(class panorama::CPanel2D * Panel representing the selected entry)</code>
 | No
 | Fired when any of the entries is activated
+| No
+| Yes
 |-
 | <code>SteamLobby_Enter(uint64 lobbyID)</code>
 | No
 | Fired when a Steam lobby is successfully entered.
+| No
+| Yes
 |-
 | <code>SteamLobby_Exit()</code>
 | No
 | Fired when a lobby is exited.
+| No
+| Yes
 |-
 | <code>SteamLobby_MemberJoinLeave(uint64 lobbyID, uint64 userID, bool bJoined)</code>
 | No
 | Fired when a lobby member either joins or leaves
+| No
+| Yes
 |-
 | <code>SwitchStyle(string slot, string class)</code>
 | Yes
 | Switch which class the panel has for a given attribute slot. Allows easily changing between multiple states.
+| Yes
+| Yes
+|-
+| <code>Toast_Clear(int32 location)</code>
+| No
+| Fired when we want to clear a location of toasts, defaults to all.
+| No
+| Yes
+|-
+| <code>Toast_Delete(string id)</code>
+| No
+| Fired when we want to delete a toast by its ID.
+| No
+| Yes
+|-
+| <code>Toast_Show(string id, string title, string message, int32 location, int32 duration, string icon, string style)</code>
+| No
+| Fired when we want to create a standard Toast panel.
+| No
+| Yes
+|-
+| <code>Toast_ShowCustom(string id, string layoutFile, int32 location, int32 duration, class JSObjectAsKeyValues params)</code>
+| No
+| Fired when we want to create a custom Toast panel with a given layout file.
+| No
+| Yes
 |-
 | <code>TogglePanelSelected()</code>
 | Yes
 | Toggle whether this panel is :selected.
+| Yes
+| Yes
 |-
 | <code>ToggleStyle(string class)</code>
 | Yes
 | Toggle whether a panel has the given CSS class.
+| Yes
+| Yes
 |-
 | <code>Tricks_TrackedTrickStep(int32 trackedTrickStepNum)</code>
 | No
 | Fired when a tracked trick has a step updated.
+| No
+| Yes
 |-
 | <code>Tricks_TrickDataLoaded()</code>
 | No
 | Fired when a map's trick data is loaded.
+| No
+| Yes
 |-
 | <code>Tricks_TrickTracked(int32 trackedTrickID)</code>
 | No
 | Fired when a trick is being tracked, passing along the trick ID.
+| No
+| Yes
 |-
 | <code>TriggerStyle(string class)</code>
 | Yes
 | Remove then immediately add back a CSS class from a panel. Useful to re-trigger events like animations or sound effects.
+| Yes
+| Yes
 |}
